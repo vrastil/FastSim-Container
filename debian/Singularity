@@ -1,0 +1,28 @@
+Bootstrap: debootstrap
+
+OSVersion: stretch
+
+MirrorURL:  http://ftp.us.debian.org/debian/
+
+%post
+	apt-get -y update
+	apt-get -y install g++-6 git cmake swig libgsl-dev libfftw3-dev
+
+	# get all libraries
+	mkdir /data && cd /data
+	git clone https://github.com/LSSTDESC/CCL.git
+	git clone https://github.com/vrastil/Adhesion-Approximation.git
+
+	#######
+	# CCL #
+	#######
+#	cd CCL
+#	mkdir build && cd build
+#	cmake ..
+#	make
+#	make install
+#	cd ..
+
+	###########
+	# FastSim #
+	###########
