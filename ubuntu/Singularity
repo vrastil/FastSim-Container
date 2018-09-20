@@ -1,8 +1,6 @@
-Bootstrap: debootstrap
+Bootstrap: docker
 
-OSVersion: stretch
-
-MirrorURL:  http://ftp.us.debian.org/debian/
+From: ubuntu:16.04
 
 %help
     Contains necessary packages and libraries to build and run FastSim (https://github.com/vrastil/Adhesion-Approximation).
