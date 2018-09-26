@@ -19,12 +19,13 @@ MirrorURL:  http://ftp.us.debian.org/debian/
     # get all libraries
     mkdir /data && cd /data
     git clone https://github.com/LSSTDESC/CCL.git
-    git clone https://github.com/vrastil/Adhesion-Approximation.git
+    git clone https://github.com/vrastil/FastSim.git
 
     #######
     # CCL #
     #######
     cd CCL
+    git checkout v0.9
     mkdir build && cd build
     cmake ..
     make
@@ -40,7 +41,7 @@ MirrorURL:  http://ftp.us.debian.org/debian/
     ###########
     # FastSim #
     ###########
-    cd Adhesion-Approximation
+    cd FastSim
     make
     make install
     cd ..
@@ -49,5 +50,5 @@ MirrorURL:  http://ftp.us.debian.org/debian/
     # Clean-up #
     ############
     ldconfig
-    rm -r *
+    rm -rf *
     apt-get clean
