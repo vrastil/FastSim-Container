@@ -5,7 +5,7 @@ OSVersion: stretch
 MirrorURL:  http://ftp.us.debian.org/debian/
 
 %help
-    Contains necessary packages and libraries to build and run FastSim (https://github.com/vrastil/Adhesion-Approximation).
+    Contains necessary packages and libraries to build and run FastSim (https://github.com/vrastil/FastSim).
 
 %post
     apt-get -y update
