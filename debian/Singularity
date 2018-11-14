@@ -18,12 +18,12 @@ MirrorURL:  http://ftp.us.debian.org/debian/
 
     # get all libraries
     mkdir /data && cd /data
-    git clone --recurse-submodules https://github.com/vrastil/FastSim.git
+    git clone https://github.com/vrastil/FastSim.git && cd FastSim
+    git submodule update --init src/3party/CCL
 
     ###########
     # FastSim #
     ###########
-    cd FastSim
     make CCL_config
     make -j2 CCL
     make -j2
