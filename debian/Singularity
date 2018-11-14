@@ -18,31 +18,15 @@ MirrorURL:  http://ftp.us.debian.org/debian/
 
     # get all libraries
     mkdir /data && cd /data
-    git clone https://github.com/LSSTDESC/CCL.git
-    git clone https://github.com/vrastil/FastSim.git
-
-    #######
-    # CCL #
-    #######
-    cd CCL
-    git checkout v0.9
-    mkdir build && cd build
-    cmake ..
-    make
-    make install
-    cd ../..
-
-    ########
-    # JSON #
-    ########
-    wget https://github.com/nlohmann/json/releases/download/v3.2.0/json.hpp
-    mv json.hpp /usr/local/include
+    git clone --recurse-submodules https://github.com/vrastil/FastSim.git
 
     ###########
     # FastSim #
     ###########
     cd FastSim
-    make
+    make CCL_config
+    make -j2 CCL
+    make -j2
     make install
     cd ..
 
