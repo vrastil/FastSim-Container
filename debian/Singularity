@@ -1,38 +1,23 @@
-Bootstrap: debootstrap
-
-OSVersion: stretch
-
-MirrorURL:  http://ftp.us.debian.org/debian/
+Bootstrap: shub
+From: vrastil/FastSim-Container-Base
 
 %help
     Contains necessary packages and libraries to build and run FastSim (https://github.com/vrastil/FastSim).
 
 %post
-    apt-get -y update
-    apt-get -y install build-essential
-    apt-get -y install gcc-6 g++-6 libstdc++6 python python-pip
-    apt-get -y install cmake git swig wget vim valgrind
-    apt-get -y install libgsl-dev libfftw3-dev pkg-config
-    apt-get -y install libboost-dev libboost-filesystem-dev libboost-program-options-dev libboost-system-dev
-    pip install numpy
-
-    # get all libraries
-    mkdir /data && cd /data
-    git clone https://github.com/vrastil/FastSim.git && cd FastSim
-    git submodule update --init --recursive
-
     ###########
     # FastSim #
     ###########
-    make CCL_config
-    make -j2 CCL
-    make -j2
+    cd /data/FastSim/
+    git pull && git submodule update --init --recursive
+    cd build
+    cmake ..
     make install
-    cd ..
 
     ############
     # Clean-up #
     ############
     ldconfig
+    cd /data
     rm -rf *
     apt-get clean
