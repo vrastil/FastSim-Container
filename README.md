@@ -14,3 +14,6 @@ or use already build ones at SingularityHub
 ````
 singularity pull --name fastsim.img shub://vrastil/FastSim-Container
 ````
+
+More about singularity containers and how to use them at [https://singularity.lbl.gov/](https://singularity.lbl.gov/)
+
