@@ -8,9 +8,10 @@ From: vrastil/FastSim-Container-Base
     ###########
     # FastSim #
     ###########
-    cd /data/FastSim/
-    git pull && git submodule update --init --recursive
-    cd build
+    mkdir /data && cd /data
+    git clone https://github.com/vrastil/FastSim.git && cd FastSim
+    git submodule update --init --recursive
+    mkdir build && cd build
     cmake ..
     make install
 
