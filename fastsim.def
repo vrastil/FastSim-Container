@@ -1,0 +1,42 @@
+BootStrap: library
+From: vrastil/default/fastsim
+
+%help
+    Contains necessary packages and libraries to build and run FastSim (https://github.com/vrastil/FastSim).
+
+%post
+    # set number of parallel jobs
+    NPROCESSES=16
+
+    ###########
+    # FastSim #
+    ###########
+    mkdir /data && cd /data
+    git clone https://github.com/vrastil/FastSim.git && cd FastSim
+    git submodule update --init --recursive
+    mkdir build && cd build
+    cmake ..
+
+    # multi-process can fail
+    make -j $NPROCESSES > /dev/null 2>&1 || make
+    make install
+
+    ############
+    # Clean-up #
+    ############
+    ldconfig
+    cd /data
+    rm -rf *
+    apt-get clean
+
+    # get basic aliases and color prompt
+    cd /data && wget -O /data/.bashrc -o /dev/null https://raw.githubusercontent.com/vrastil/Containers/master/utils/.bashrc && chmod +x /data/.bashrc
+
+%environment
+    . /data/.bashrc
+
+%apprun fastsim
+    FastSim $@
+
+%apprun jupyter
+    jupyter-notebook --ip=* $@
